@@ -79,10 +79,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Command\RelayCommand.cs" />
+    <Compile Include="Converter\VisibilityPanelConverter.cs" />
     <Compile Include="Enum\Enums.cs" />
     <Compile Include="Model\CurrentWord.cs" />
     <Compile Include="Model\EnglishWord.cs" />
     <Compile Include="Model\RelayCommand.cs" />
+    <Compile Include="Model\VerifyAnswer.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\MainWindow.xaml.cs">

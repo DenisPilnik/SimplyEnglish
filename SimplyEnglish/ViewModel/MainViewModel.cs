@@ -1,7 +1,6 @@
 using GalaSoft.MvvmLight;
 using SimplyEnglish.Model;
 using System;
-using System.Windows;
 using System.Windows.Input;
 using RelayCommand = SimplyEnglish.Command.RelayCommand;
 
@@ -12,16 +11,29 @@ namespace SimplyEnglish.ViewModel
         public string Title { get => "Study English"; }
         public EnglishWord englishWord { get; set; }
         public CurrentWord currentWord { get; set; }
-        private ICommand m_ButtonCommand;
-        public ICommand ButtonCommand
+        private ICommand submitAnswerBtn;
+        public ICommand SubmitAnswerBtn
         {
             get
             {
-                return m_ButtonCommand;
+                return submitAnswerBtn;
             }
             set
             {
-                m_ButtonCommand = value;
+                submitAnswerBtn = value;
+            }
+        }
+
+        private ICommand okBtn;
+        public ICommand OkBtn
+        {
+            get
+            {
+                return okBtn;
+            }
+            set
+            {
+                okBtn = value;
             }
         }
 
@@ -30,14 +42,23 @@ namespace SimplyEnglish.ViewModel
             englishWord = new EnglishWord();
             currentWord = new CurrentWord();
 
-            ButtonCommand = new RelayCommand(new Action<object>(ShowMessage));
+            SubmitAnswerBtn = new RelayCommand(new Action<object>(SubmitAnswer));
+            OkBtn = new RelayCommand(new Action<object>(ChechWrongInfoOk));
+
+            currentWord.Answer = "Answer : ";
 
             englishWord.SetWord();
         }       
 
-        public void ShowMessage(object obj)
+        public void SubmitAnswer(object obj)
         {
-            MessageBox.Show("Hello World");
+            currentWord.AnswerStatus = VerifyAnswer.Verificate(currentWord, englishWord);
+            currentWord.Answer = "";
+        }
+
+        public void ChechWrongInfoOk(object obj)
+        {
+            currentWord.AnswerStatus = Enum.Answer.None;
         }
     }
 }
