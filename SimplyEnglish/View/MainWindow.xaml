@@ -3,11 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SimplyEnglish"
+        xmlns:local="clr-namespace:SimplyEnglish" 
         mc:Ignorable="d"
-        Title="Study English" Height="350" Width="450">
+        Title="{Binding Title}"
+        DataContext="{Binding Main, Source={StaticResource Locator}}" Height="350" Width="450">
     <Grid>
-        <StackPanel>
+        <StackPanel Visibility="Collapsed">
             <TextBlock Text="Your answer"
                 HorizontalAlignment="Center"
                 Margin="0 75 0 0"
@@ -21,7 +22,7 @@
                 Background="White"
                 BorderBrush="Black"/>
         </StackPanel>
-        <StackPanel Visibility="Collapsed">
+        <StackPanel Visibility="Visible">
             <TextBlock Text="Some english word"
                 HorizontalAlignment="Center"
                 Margin="50"
