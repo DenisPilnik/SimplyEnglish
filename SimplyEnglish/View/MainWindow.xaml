@@ -23,7 +23,7 @@
                 BorderBrush="Black"/>
         </StackPanel>
         <StackPanel Visibility="Visible">
-            <TextBlock Text="Some english word"
+            <TextBlock Text="{Binding englishWord.Word}"
                 HorizontalAlignment="Center"
                 Margin="50"
                 FontSize="24"/>
@@ -34,7 +34,8 @@
                 Height="35"
                 FontSize="24"
                 TextAlignment="Center"/>
-            <Button Content="Get answer"
+            <Button Command="{Binding ButtonCommand}"
+                Content="Get answer"
                 HorizontalAlignment="Center"
                 Margin="25"
                 Width="300"

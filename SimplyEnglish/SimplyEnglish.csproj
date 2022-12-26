@@ -78,6 +78,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Command\RelayCommand.cs" />
+    <Compile Include="Enum\Enums.cs" />
+    <Compile Include="Model\CurrentWord.cs" />
+    <Compile Include="Model\EnglishWord.cs" />
+    <Compile Include="Model\RelayCommand.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
@@ -112,8 +117,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
