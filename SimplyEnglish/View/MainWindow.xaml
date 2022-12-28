@@ -13,9 +13,14 @@
     </Window.Resources>
     <Grid>
         <StackPanel Visibility="{Binding currentWord.AnswerStatus, Converter={StaticResource visiblePanel}, ConverterParameter=1}">
-            <TextBlock Text="Your answer"
+            <TextBlock Text="{Binding englishWord.Word, Mode=TwoWay}"
                 HorizontalAlignment="Center"
                 Margin="0 75 0 0"
+                Foreground="Red"
+                FontSize="24"/>
+            <TextBlock Text="{Binding englishWord.AnswerVariable}"
+                HorizontalAlignment="Center"
+                Margin="0 10 0 0"
                 FontSize="24"/>
             <Button Command="{Binding OkBtn}"
                 Content="Ok"
@@ -28,7 +33,7 @@
                 BorderBrush="Black"/>
         </StackPanel>
         <StackPanel Visibility="{Binding currentWord.AnswerStatus, Converter={StaticResource visiblePanel}, ConverterParameter=2}">
-            <TextBlock Text="{Binding englishWord.Word}"
+            <TextBlock Text="{Binding englishWord.Word, Mode=TwoWay}"
                 HorizontalAlignment="Center"
                 Margin="50"
                 FontSize="24"/>

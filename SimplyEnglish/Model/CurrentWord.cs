@@ -1,23 +1,14 @@
-﻿using SimplyEnglish.Enum;
+﻿using SimplyEnglish.Command;
+using SimplyEnglish.Enum;
 using System.ComponentModel;
 
 namespace SimplyEnglish.Model
 {
-    public class CurrentWord:INotifyPropertyChanged
+    public class CurrentWord:ChangeProperty
     {
         private string englishWord { get; set; }
         private string answer { get; set; }
         private Answer answerStatus { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
 
         public string EnglishWord {
             get { return englishWord; }

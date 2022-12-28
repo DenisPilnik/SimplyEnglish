@@ -1,12 +1,14 @@
 using GalaSoft.MvvmLight;
+using SimplyEnglish.Json;
 using SimplyEnglish.Model;
 using System;
+using System.ComponentModel;
 using System.Windows.Input;
 using RelayCommand = SimplyEnglish.Command.RelayCommand;
 
 namespace SimplyEnglish.ViewModel
 {
-    public class MainViewModel : ViewModelBase
+    public class MainViewModel : ViewModelBase,INotifyPropertyChanged
     {
         public string Title { get => "Study English"; }
         public EnglishWord englishWord { get; set; }
@@ -37,6 +39,18 @@ namespace SimplyEnglish.ViewModel
             }
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+       
+
         public MainViewModel()
         {
             englishWord = new EnglishWord();
@@ -45,20 +59,31 @@ namespace SimplyEnglish.ViewModel
             SubmitAnswerBtn = new RelayCommand(new Action<object>(SubmitAnswer));
             OkBtn = new RelayCommand(new Action<object>(ChechWrongInfoOk));
 
-            currentWord.Answer = "Answer : ";
+            GetNewWord();
 
-            englishWord.SetWord();
+            currentWord.Answer = "Answer : ";
         }       
 
         public void SubmitAnswer(object obj)
         {
             currentWord.AnswerStatus = VerifyAnswer.Verificate(currentWord, englishWord);
             currentWord.Answer = "";
+            if (currentWord.AnswerStatus == Enum.Answer.CorrectAnswer)
+                GetNewWord();
+            
         }
 
         public void ChechWrongInfoOk(object obj)
         {
-            currentWord.AnswerStatus = Enum.Answer.None;
+            GetNewWord();
+            currentWord.AnswerStatus = Enum.Answer.None;           
+        }
+
+        private void GetNewWord()
+        {
+            Random random = new Random();
+            englishWord = JsonMapper.GetEnglishWordById(random.Next(400));
+            OnPropertyChanged(nameof(englishWord));
         }
     }
 }
