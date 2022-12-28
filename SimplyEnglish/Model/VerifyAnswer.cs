@@ -6,7 +6,7 @@ namespace SimplyEnglish.Model
     {
         public static Answer Verificate(CurrentWord currentWord, EnglishWord englishWord)
         {
-            return englishWord.AnswerVariable.Any(word => word.ToLower().Replace(" ", "") == currentWord.Answer.ToLower().Replace(" ", "")) ? Answer.CorrectAnswer : Answer.WrongAnswer;
+            return englishWord.AnswerVariable.ToLower().Replace(" ", "") == currentWord.Answer.ToLower().Replace(" ", "") ? Answer.CorrectAnswer : Answer.WrongAnswer;
         }
     }
 }

@@ -1,23 +1,14 @@
-﻿using System.Collections.ObjectModel;
+﻿using SimplyEnglish.Command;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace SimplyEnglish.Model
 {
-    public class EnglishWord:INotifyPropertyChanged
+    public class EnglishWord:ChangeProperty
     {
         private string word { get; set; }
-        private ObservableCollection<string> answerVariable {get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
+        private string answerVariable {get; set; }
         public string Word
         {
             get { return word; }
@@ -26,25 +17,13 @@ namespace SimplyEnglish.Model
                 OnPropertyChanged(nameof(Word));
             }
         }
-        public ObservableCollection<string> AnswerVariable
+        public string AnswerVariable
         {
             get { return answerVariable; }
             set { 
                 answerVariable = value;
                 OnPropertyChanged(nameof(AnswerVariable));
             }
-        }
-        
-        public void SetWord()
-        {
-            Word = "Kat";
-            ObservableCollection<string> answer = new ObservableCollection<string>
-            {
-                "Кіт",
-                "Кішка",
-                "Кот"
-            };
-            AnswerVariable = answer;
         }
     }
 }
